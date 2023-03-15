@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOTEL MOKKO - ABOUT US</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <?php require('inc/links.php'); ?>
+    <title><?php echo $settings_r['site_title'] ?> - ABOUT US</title>
     <style>
         .box{
             border-top-color: var(--teal) !important;
@@ -41,7 +41,7 @@
                 </p>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
-                <img src="images/aboutus/about.png" class="w-100">
+                <img src="images/aboutus/hotelimg.jpg" class="w-100">
             </div>
         </div>
     </div>
@@ -124,4 +124,5 @@
       }
     });
   </script>
+  </body>
 </html>

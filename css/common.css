@@ -33,15 +33,14 @@ input[type=number] {
     border-color: var(--teal_hover);
 }
 
-.custom-alert{
-    position: fixed;
-    top: 80px;
-    right: 25px;
-}
-
 .h-line{
     width: 150px;
     margin: 0 auto;
     height: 1.7px;
 }
-
+.custom-alert{
+    position: fixed;
+    top: 80px;
+    right: 25px;
+    z-index: 1111;
+}

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOTEL MOKKO - CONTACT US</title>
     <?php require('inc/links.php'); ?>
+    <title><?php echo $settings_r['site_title'] ?> - CONTACT</title>
 </head>
 <body class="bg-light">
 
@@ -121,4 +121,5 @@
         }
     ?>
     <?php require('inc/footer.php'); ?>
+    </body>
 </html>

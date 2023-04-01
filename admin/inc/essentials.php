@@ -6,6 +6,7 @@
     define('CAROUSEL_IMG_PATH',SITE_URL.'images/carousel/');
     define('FACILITIES_IMG_PATH',SITE_URL.'images/facilities/');
     define('ROOMS_IMG_PATH',SITE_URL.'images/rooms/');
+    define('USERS_IMG_PATH',SITE_URL.'images/users/');
 
 
     //BACKEND UPLOAD PROCESS NEED THIS DATA OKAY? HAHAHAA
@@ -18,7 +19,7 @@
 
     //sendgrid api key
 
-    define('SENDGRID_API_KEY',"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");
+    // define('SENDGRID_API_KEY',"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");
 
     function adminLogin(){
         session_start();

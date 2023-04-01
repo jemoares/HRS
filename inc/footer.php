@@ -1,9 +1,9 @@
 <div class="container-fluid bg-white mt-5">
     <div class="row">
         <div class="col-lg-4 p-4">
-            <h3 class="h-font fw-bold fs-3 mb-2"><?php echo $settings_r['site_title']?></h3>
+            <h3 class="h-font fw-bold fs-3 mb-2"><?php echo $settings_r['site_title'] ?></h3>
             <p>
-                <?php echo $settings_r['site_about']?>
+                <?php echo $settings_r['site_about'] ?>
             </p>
         </div>
         <div class="col-lg-4 p-4">
@@ -36,6 +36,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script>
+    
     function alert(type, msg, position = 'body') {
         let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
         let element = document.createElement('div');
@@ -122,6 +123,105 @@
         }
 
         xhr.send(data);
-    })
+    });
+
+    let login_form = document.getElementById('login-form');
+
+    login_form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let data = new FormData();
+
+        data.append('email_mob', login_form.elements['email_mob'].value);
+        data.append('pass', login_form.elements['pass'].value);
+        data.append('login', '');
+
+        var myModal = document.getElementById('loginModal');
+        var modal = bootstrap.Modal.getInstance(myModal); 
+        modal.hide();
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/login_register.php", true);
+
+        xhr.onload = function() {
+            if (this.responseText == 'inv_email_mob') {
+                alert('error', "Invalid Email or Mobile number");
+            } else if (this.responseText == 'not_verified') {
+                alert('error', "Email is not verified");
+            } else if (this.responseText == 'inactive') {
+                alert('error', "Account blocked, Please contact admin");
+            } 
+              else if (this.responseText == 'invalid_pass') {
+                alert('error', "Incorrect Password");
+            } 
+              else {
+                let fileurl = window.location.href.split('/').pop().split('?').shift();
+                if(fileurl == 'room_details.php'){
+                    window.location = window.location.href;
+                }
+                else
+                {  
+                    window.location = window.location.pathname;
+                }
+            }
+        }
+
+        xhr.send(data);
+    });
+
+    let forgot_form = document.getElementById('forgot-form');
+
+    forgot_form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let data = new FormData();
+
+        data.append('email', forgot_form.elements['email'].value);
+        data.append('forgot_pass', '');
+
+        var myModal = document.getElementById('forgotModal');
+        var modal = bootstrap.Modal.getInstance(myModal); 
+        modal.hide();
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/login_register.php", true);
+
+        xhr.onload = function() {
+            if (this.responseText == 'inv_email') {
+                alert("error", "Invalid Email");
+            } 
+            else if (this.responseText == 'not_verified') {
+                alert('error', "Email is not verified, Please contact admin");
+            } 
+            else if (this.responseText == 'inactive') {
+                alert('error', "Account blocked, Please contact admin");
+            } 
+            else if (this.responseText == 'mail_failed') {
+                alert('error', "Cannot send email");
+            } 
+            else if (this.responseText == 'upd_failed') {
+                alert('error', "Password reset failed");
+            } 
+            else {
+                alert('success', "Reset link sent to email");
+                forgot_form.reset();
+            }
+        }
+
+        xhr.send(data);
+    });
+
+    function checkLoginToBook(status,room_id)
+    {
+        if(status)
+        {
+            window.location.href='confirm_booking.php?id='+room_id;
+        }
+        else
+        {
+            alert('error','Please login first to proceed to booking');
+        }
+    }
+
     setActive();
 </script>

@@ -125,6 +125,18 @@
                     $room_thumb = ROOMS_IMG_PATH . $thumb_res['image'];
                 }
 
+                $book_btn = "";
+
+                if(!$settings_r['shutdown'])
+                {
+                    $login = 0;
+                    if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+                        $login = 1;
+                    }
+                    $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</button>
+                    ";
+                }
+
                 // print room card
 
                 echo <<<data
@@ -159,8 +171,8 @@
                                     <i class="bi bi-star-fill text-warning"></i>
                                 </div>
                                 <div class="d-flex justify-content-evenly mb-2">
-                                    <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book Now</a>
-                                    <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
+                                $book_btn
+                                <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
                                 </div>
                             </div>
                         </div>
@@ -201,9 +213,9 @@
 
     <!-- Feedbacks -->
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">FEEDBACKS</h2>
+    <!-- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">FEEDBACKS</h2>
 
-    <div class="container">
+    <div class="container"> -->
         <div class="swiper swiper-testimonials">
             <div class="swiper-wrapper mb-5">
 
@@ -321,7 +333,71 @@
         </div>
     </div>
 
+    
+    <!-- Password reset modal and code-->
+    <div class="modal fade" id="recoveryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="recovery-form">
+                <div class="modal-header">
+                    <h5 class="modal-title d-flex align-items-center">
+                        <i class="bi bi-shield-lock fs-3 me-2"></i>Create new password
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base">
+                        Note: A link will be sent to your email to reset your password
+                    </span>
+                    <div class="mb-4">
+                        <label class="form-label">New Password</label>
+                        <input type="password" name="pass" required class="form-control shadow-none">
+                        <input type="hidden" name="email">
+                        <input type="hidden" name="token">
+                    </div>
+                    <div class="mb-2 text-end">
+                        <button type="button" class="btn shadow-none me-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-dark shadow-none">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
     <?php require('inc/footer.php'); ?>
+
+    <?php 
+
+        if(isset($_GET['account_recovery']))
+        {
+            $data = filteration($_GET);
+
+            $t_date = date("Y-m-d");
+
+            $query = select("SELECT * FROM `user_cred` WHERE `email`=? AND `token`=? AND `t_expire`=? LIMIT 1",
+            [$data['email'],$data['token'],$t_date],'sss');
+
+            if(mysqli_num_rows($query)==1)
+            {
+                echo<<<showModal
+                <script>
+                    var myModal = document.getElementById('recoveryModal');
+
+                    myModal.querySelector("input[name='email']").value = '$data[email]';
+                    myModal.querySelector("input[name='token']").value = '$data[token]';
+
+                    var modal = bootstrap.Modal.getOrCreateInstance(myModal); 
+                    modal.show();
+                </script>
+                showModal;
+            }
+            else
+            {
+                alert("error","Invalid or Expired Link");
+            }
+
+        }
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
@@ -369,6 +445,41 @@
 
             }
         });
+
+        //ACC REC
+
+        let recovery_form = document.getElementById('recovery-form');
+
+        recovery_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let data = new FormData();
+
+            data.append('email', recovery_form.elements['email'].value);
+            data.append('token', recovery_form.elements['token'].value);
+            data.append('pass', recovery_form.elements['pass'].value);
+            data.append('recover_user', '');
+
+            var myModal = document.getElementById('recoveryModal');
+            var modal = bootstrap.Modal.getInstance(myModal); 
+            modal.hide();
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/login_register.php", true);
+
+            xhr.onload = function() {
+                if (this.responseText == 'failed') {
+                    alert("error", "Account reset failed");
+                }
+                else {
+                    alert('success', "Account Reset Successful");
+                    recovery_form.reset();
+                }
+            }
+
+            xhr.send(data);
+        });
+
     </script>
 </body>
 

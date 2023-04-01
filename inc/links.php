@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="css/common.css">
 
 <?php
+    session_start();
+    date_default_timezone_set("Asia/Manila");
     require('admin/inc/db_config.php');
     require('admin/inc/essentials.php');
 
@@ -16,5 +18,14 @@
     $values = [1];
     $contact_r = mysqli_fetch_assoc(select($contact_query, $values, 'i'));
     $settings_r = mysqli_fetch_assoc(select($settings_query, $values, 'i'));
+
+    if($settings_r['shutdown']){
+        echo<<<alertbar
+            <div class='bg-danger text-center p-2 fw-bold'> 
+            <i class="bi bi-exclamation-triangle-fill"></i>
+                Bookings are temporary closed
+            </div>
+        alertbar;
+    }
 
 ?>

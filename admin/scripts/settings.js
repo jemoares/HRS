@@ -5,6 +5,7 @@ let general_data, contacts_data;
 let general_s_form = document.getElementById('general_s_form');
 let site_title_inp = document.getElementById('site_title_inp');
 let site_about_inp = document.getElementById('site_about_inp');
+// let password_inp = document.getElementById('password_inp');
 
 let contacts_s_form = document.getElementById('contacts_s_form');
 
@@ -15,6 +16,7 @@ let member_picture_inp = document.getElementById('member_picture_inp');
 function get_general() {
     let site_title = document.getElementById('site_title');
     let site_about = document.getElementById('site_about');
+    // let password = document.getElementById('password');
 
 
     let shutdown_toggle = document.getElementById('shutdown-toggle');
@@ -28,9 +30,11 @@ function get_general() {
 
         site_title.innerText = general_data.site_title;
         site_about.innerText = general_data.site_about;
+        // password.innerText = general_data.password;
 
         site_title_inp.value = general_data.site_title;
         site_about_inp.value = general_data.site_about;
+        // password_inp.value = general_data.password;
 
         if (general_data.shutdown == 0) {
             shutdown_toggle.checked = false;

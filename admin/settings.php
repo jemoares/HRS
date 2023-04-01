@@ -10,7 +10,7 @@ adminLogin();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Settings</title>
+    <title>Admin - Settings</title>
     <?php require('inc/links.php'); ?>
 </head>
 
@@ -57,6 +57,10 @@ adminLogin();
                                         <label class="form-label fw-bold">Site About</label>
                                         <textarea name="site_about" id="site_about_inp" class="form-control shadow-none" rows="6" required></textarea>
                                     </div>
+                                    <!-- <div class="mb-3">
+                                        <label class="form-label fw-bold">Password</label>
+                                        <input type="password" id="password_inp" name="password" class="form-control shadow-none" required>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" onclick="site_title.value = general_data.site_title, site_about.value = general_data.site_about" class="btn text-secondary shadow-none" data-bs-dismiss="modal">CANCEL</button>

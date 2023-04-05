@@ -2,6 +2,7 @@
 
     require('../admin/inc/db_config.php');
     require('../admin/inc/essentials.php');
+    // require('../inc/footer.php');
     date_default_timezone_set("Asia/Manila");
     // require("../inc/sendgrid/sendgrid-php.php");
     use PHPMailer\PHPMailer\PHPMailer;
@@ -34,13 +35,13 @@
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'hotelmokko32@gmail.com';                     //SMTP username
-            $mail->Password   = 'ctzdnplanluwxiep';                               //SMTP password
+            $mail->Username   = 'pampogi9@gmail.com';                     //SMTP username
+            $mail->Password   = 'gyecvenzucklenbo';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('hotelmokko32@gmail.com', 'Hotel Mokko');
+            $mail->setFrom('pampogi9@gmail.com', 'Hotel Mokko');
             $mail->addAddress($email);     //Add a recipient
         
             //Content

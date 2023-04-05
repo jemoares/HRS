@@ -25,9 +25,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="new_reservations.php">New Reservations</a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link text-white" href="cancelled_reservations.php">Cancelled Reservations</a>
-                                </li> -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="cancelled_reservations.php">Cancel Reservations</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="reservation_records.php">Reservation Records</a>
                                 </li>
@@ -41,7 +41,7 @@
                         <a class="nav-link text-white" href="user_queries.php">User Queries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="features_facilities.php">Features & Facilities</a>
+                        <a class="nav-link text-white" href="features_facilities.php">Features & Amenities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="rooms.php">Rooms</a>

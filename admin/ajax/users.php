@@ -30,7 +30,7 @@ if (isset($_POST['get_users'])) {
             $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-danger btn-sm shadow-none'>inactive</button>";
         }
 
-        $date = date("d-m-Y",strtotime($row['datentime']));
+        $date = date("m-d-Y",strtotime($row['datentime']));
 
         $data .= "
             <tr>

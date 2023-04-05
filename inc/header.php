@@ -13,7 +13,7 @@
                     <a class="nav-link me-2" href="rooms.php">Rooms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link me-2" href="facilities.php">Facilities</a>
+                    <a class="nav-link me-2" href="facilities.php">Features</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link me-2" href="contactus.php">Contact us</a>
@@ -29,7 +29,7 @@
                     echo <<<data
                             <div class="btn-group">
                                 <button type="button" class="btn btn-outline-dark shadow-none secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                    <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="me-1">
+                                    <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="rounded-circle me-1">
                                     $_SESSION[uName]
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">

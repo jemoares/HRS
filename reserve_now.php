@@ -39,7 +39,7 @@
 
         echo "
             <script> alert('Reservation Successfully');
-                window.location.href='reservation_status.php?order=$ORDER_ID';
+                window.location.href='bookings.php';
             </script>
         
         ";

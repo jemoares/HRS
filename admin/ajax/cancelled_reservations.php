@@ -11,9 +11,9 @@ if (isset($_POST['get_reservations'])) {
     $query = "SELECT bo.*, bd.* FROM `booking_order` bo
     INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id
     WHERE (bo.order_id LIKE ? OR bd.phonenum LIKE ? OR bd.user_name LIKE ?)
-    AND (bo.booking_status=? AND bo.refund=?) ORDER BY bo.booking_id ASC";
+    AND (bo.booking_status=? AND bo.cancel=?) ORDER BY bo.booking_id ASC";
 
-    $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","cancelled",0],'sssss');
+    $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","cancelling",0],'sssss');
     
     $i=1;
     $table_data = "";
@@ -55,7 +55,7 @@ if (isset($_POST['get_reservations'])) {
                 </td>
                 <td>
                     <button type='button' onclick='cancel_reservation($data[booking_id])'class='btn btn-success btn-sm fw-bold shadow-none'>
-                        <i class='bi bi-cash-stack'></i> Cancel Reservation
+                        <i class='bi bi-cash-stack'></i> Cancel
                     </button>
                 </td>
             </tr> 
@@ -70,8 +70,8 @@ if (isset($_POST['cancel_reservation']))
 {
     $frm_data = filteration($_POST);
 
-    $query = "UPDATE `booking_order` SET `booking_status`=?, `refund`=? WHERE `booking_id`=?";
-    $values = ['cancelled', 0, $frm_data['booking_id']];
+    $query = "UPDATE `booking_order` SET `booking_status`=?, `cancel`=? WHERE `booking_id`=?";
+    $values = ["cancelled",1, $frm_data['booking_id']];
     $res = update($query, $values, 'sii');
 
     echo $res;

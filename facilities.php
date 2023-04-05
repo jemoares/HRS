@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require('inc/links.php'); ?>
-    <title><?php echo $settings_r['site_title'] ?> - FACILITIES</title>
+    <title><?php echo $settings_r['site_title'] ?> - Features</title>
     <style>
         .pop:hover{
           border-top-color: var(--teal) !important;
@@ -19,7 +19,7 @@
     <?php require('inc/header.php'); ?>
     
     <div class="my-5 px-4">
-        <h2 class="fw-bold h-font text-center">FACILITIES</h2>
+        <h2 class="fw-bold h-font text-center">FEATURES</h2>
         <div class="h-line bg-dark"></div>
         <p class="text-center mt-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 

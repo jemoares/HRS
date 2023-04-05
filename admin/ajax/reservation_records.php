@@ -8,14 +8,14 @@ if (isset($_POST['get_reservations'])) {
 
     $frm_data= filteration($_POST);
 
-    $limit = 2;
+    $limit = 5;
     $page = $frm_data['page'];
     $start = ($page-1) * $limit;
 
     $query = "SELECT bo.*, bd.* FROM `booking_order` bo
         INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id
         WHERE ((bo.booking_status='reserved' AND bo.arrival=1) 
-        OR (bo.booking_status='cancelled'))
+        OR (bo.booking_status='cancelled' AND bo.cancel=1))
         AND (bo.order_id LIKE ? OR bd.phonenum LIKE ? OR bd.user_name LIKE ?)
         ORDER BY bo.booking_id DESC";
 
@@ -86,9 +86,8 @@ if (isset($_POST['get_reservations'])) {
                 </td>
                 <td>
                     <button type='button' onclick='download($data[booking_id])'class='btn btn-success btn-sm fw-bold shadow-none'>
-                    <i class='bi bi-file-earmark-arrow-down-fill'></i>
+                        <i class='bi bi-file-earmark-arrow-down-fill'></i>
                     </button>
-                    
                 </td>
             </tr> 
         ";
@@ -135,31 +134,6 @@ if (isset($_POST['get_reservations'])) {
     $output = json_encode(["table_data"=>$table_data,"pagination"=>$pagination]);
 
     echo $output;
-}
-
-if (isset($_POST['assign_room'])) {
-    $frm_data = filteration($_POST);
-
-    $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd
-    ON bo.booking_id = bd.booking_id
-    SET bo.arrival = ?, bd.room_no = ?
-    WHERE bo.booking_id = ?";
-
-    $values = [1, $frm_data['room_no'],$frm_data['booking_id']];
-    $res = update($query, $values,'isi');
-
-    echo($res==2) ? 1 : 0;
-}
-
-if (isset($_POST['cancel_reservation'])) 
-{
-    $frm_data = filteration($_POST);
-
-    $query = "UPDATE `booking_order` SET `booking_status`=?, `refund`=? WHERE `booking_id`=?";
-    $values = ['cancelled', 0, $frm_data['booking_id']];
-    $res = update($query, $values, 'sii');
-
-    echo $res;
 }
 
 

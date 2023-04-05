@@ -110,7 +110,7 @@
 
                         echo <<<features
                             <div class="mb-3">
-                                <h6 class="mb-1">Features</h6>
+                                <h6 class="mb-1">Amenities</h6>
                                 $features_data
                             </div>
                         features;
@@ -128,7 +128,7 @@
 
                         echo <<<facilities
                             <div class="mb-3">
-                                <h6 class="mb-1">Facilities</h6>
+                                <h6 class="mb-1">Features</h6>
                                 $facilities_data
                             </div>
                         facilities;

@@ -80,7 +80,9 @@ if (isset($_POST['get_all_rooms'])) {
             <td>$row[quantity]</td>
             <td>$status</td>
             <td>
-                
+                <button type='button' onclick='edit_details($row[id])' class='btn btn-primary shadow-none btn-sm' data-bs-toggle='modal' data-bs-target='#edit-room'>
+                    <i class='bi bi-pencil-square'></i>
+                </button>
                 <button type='button' onclick=\"room_images($row[id],'$row[name]')\" class='btn btn-info shadow-none btn-sm' data-bs-toggle='modal' data-bs-target='#room-images'>
                     <i class='bi bi-images'></i>
                 </button>
@@ -135,7 +137,8 @@ if (isset($_POST['edit_room'])) {
     $query = "UPDATE `rooms` SET `name`=?, `area`=?, `price`=?,
     `quantity`=?, `guest`=?, `description`=? WHERE `id`=?";
 
-    $values = [$frm_data['name'], $frm_data['area'], $frm_data['price'], $frm_data['quantity'], $frm_data['guest'], $frm_data['desc'], $frm_data['room_id']];
+    $values = [$frm_data['name'], $frm_data['area'], $frm_data['price'], 
+    $frm_data['quantity'], $frm_data['guest'], $frm_data['desc'], $frm_data['room_id']];
 
     if (update($query, $values, 'siiiisi')) {
         $flag = 1;

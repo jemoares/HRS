@@ -70,6 +70,7 @@ function get_all_rooms() {
 let edit_room_form = document.getElementById('edit_room_form');
 
 function edit_details(id) {
+    // console.log(id);
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/rooms.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -83,7 +84,7 @@ function edit_details(id) {
         edit_room_form.elements['quantity'].value = data.roomdata.quantity;
         edit_room_form.elements['guest'].value = data.roomdata.guest;
         edit_room_form.elements['desc'].value = data.roomdata.description;
-        edit_room_form.elements['room_id'].value = data.roomdata.room_id;
+        edit_room_form.elements['room_id'].value = data.roomdata.id;
 
         edit_room_form.elements['features'].forEach(el => {
             if (data.features.includes(Number(el.value))) {
@@ -98,13 +99,13 @@ function edit_details(id) {
         });
     }
 
-    xhr.send('get_room=' + id);
+    xhr.send('get_room='+id);
 }
 
-edit_room_form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    submit_edit_room();
-});
+    edit_room_form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submit_edit_room();
+    });
 
 function submit_edit_room() {
     let data = new FormData();

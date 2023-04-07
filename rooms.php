@@ -56,6 +56,26 @@
                                 <label class="form-label">Check-out</label>
                                 <input type="date" class="form-control shadow-none"  min="<?php echo date("Y-m-d"); ?>" value="<?php echo $checkout_default ?>"id="checkout" onchange="chk_avail_filter()">
                             </div>
+                            <!-- Check Amenities -->
+                            <div class="border bg-light p-3 rounded mb-3">
+                                <h5 class="d-flex align-items-center justify-content-between mb-3" style="font: size 18px;">
+                                    <span>AMENITIES</span>
+                                    <button id="features_btn" onclick="features_clear()" class="btn shadow-none btn-sm text-secondary d-none">Reset</button>
+                                </h5>
+                                <?php 
+                                    $features_query = selectAll('features');
+                                    while($row = mysqli_fetch_assoc($features_query))
+                                    {
+                                        echo<<<features
+                                            <div class="mb-2">
+                                                <input type="checkbox" onclick="fetch_rooms()" name="features" value="$row[id]" class="form-check-input shadow-none me-1" id="$row[id]">
+                                                <label class="form-check-label" for="$row[id]">$row[name]</label>
+                                            </div>
+                                        features;
+                                    }                   
+                                ?>
+                            </div>
+
                             <!-- Check Features -->
                             <div class="border bg-light p-3 rounded mb-3">
                                 <h5 class="d-flex align-items-center justify-content-between mb-3" style="font: size 18px;">
@@ -72,11 +92,21 @@
                                                 <label class="form-check-label" for="$row[id]">$row[name]</label>
                                             </div>
                                         facilities;
-                                    }
-                                
-                                
+                                    }                 
                                 ?>
                             </div>
+
+                            <!-- Check Room Category -->
+                            <!-- <div class="col-lg-3 mb-3">
+                            <label class="form-label" style="font-weight: 500;">Room type</label>
+                            <select class="form-select shadow-none" name="room_type">
+                                
+                                    $room_type_q = mysqli_fetch_assoc(mysqli_query($con, "SELECT `name` FROM `rooms`"));
+                                
+                                
+
+                            </select>
+                            </div> -->
                             <!-- Guests -->
                             <div class="border bg-light p-3 rounded mb-3">
                                 <h5 class="d-flex align-items-center justify-content-between mb-3" style="font: size 18px;">
@@ -113,6 +143,7 @@
     let guests_btn = document.getElementById('guests_btn');
 
     let facilities_btn = document.getElementById('facilities_btn');
+    let features_btn = document.getElementById('features_btn');
 
 
     function fetch_rooms()
@@ -127,7 +158,24 @@
             persons: persons.value
 
         });
+        let feature_list = {"feature":[]};
 
+        let get_features = document.querySelectorAll('[name="features"]:checked');
+        if (get_features.length > 0)
+        {
+            get_features.forEach((feature)=>{
+                feature_list['feature'].push(feature.value);
+                // facility_list.facilities.push(facility.value);
+            });
+            features_btn.classList.remove('d-none');
+        }
+        else
+        {
+            features_btn.classList.add('d-none');
+        }
+
+        feature_list = JSON.stringify(feature_list);
+        
         let facility_list = {"facility":[]};
 
         let get_facilities = document.querySelectorAll('[name="facilities"]:checked');
@@ -147,7 +195,7 @@
         facility_list = JSON.stringify(facility_list);
 
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "ajax/rooms.php?fetch_rooms&chk_avail="+chk_avail+"&guests="+guests+"&facility_list="+facility_list, true);
+        xhr.open("GET", "ajax/rooms.php?fetch_rooms&chk_avail="+chk_avail+"&guests="+guests+"&facility_list="+facility_list+"&feature_list="+feature_list, true);
 
         xhr.onprogress = function(){
             rooms_data.innerHTML = `<div class="spinner-border text-info mb-3 d-block mx-auto" id="loader" role="status">
@@ -196,6 +244,17 @@
     {
         persons.value='';
         guests_btn.classList.add('d-none');
+        fetch_rooms();
+    }
+
+    function features_clear()
+    {
+        let get_features = document.querySelectorAll('[name="features"]:checked');
+        get_features.forEach((feature)=>{
+                // facility_list['facility'].push(facility.value);
+            feature.checked=false;
+        });
+        features_btn.classList.add('d-none');
         fetch_rooms();
     }
 

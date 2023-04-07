@@ -176,7 +176,7 @@ adminLogin();
                                 <input type="number" min="1" name="guest" class="form-control shadow-none" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Features</label>
+                                <label class="form-label fw-bold">Amenities</label>
                                 <div class="row">
                                     <?php
                                     $res = selectAll('features');
@@ -194,7 +194,7 @@ adminLogin();
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Facilities</label>
+                                <label class="form-label fw-bold">Features</label>
                                 <div class="row">
                                     <?php
                                     $res = selectAll('facilities');

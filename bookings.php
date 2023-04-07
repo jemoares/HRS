@@ -58,6 +58,7 @@
                         if($data['arrival']==1)
                         {
                             $btn="<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
+                                
                             
                             if($data['rate_review']==0)
                             {
@@ -103,11 +104,11 @@
                     bookings;
                 }    
             ?>
+
          </div>
     </div>
 
-
-    <!-- <div class="modal fade" id="reviewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="reviewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="review-form">
@@ -120,33 +121,40 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Rating</label>
-                            <select class="form-select shadow-none" name="rating">
-                                <option value="5">Excellent</option>
-                                <option value="4">Great</option>
-                                <option value="3">Very Good</option>
-                                <option value="2">Good</option>
-                                <option value="1">Bad</option>
-                            </select>
+                                <select class="form-select shadow-none" name="rating">
+                                    <option value="5">Excellent</option>
+                                    <option value="4">Great</option>
+                                    <option value="3">Very Good</option>
+                                    <option value="2">Good</option>
+                                    <option value="1">Bad</option>
+                                </select>
                         </div>
                         <div class="mb-4">
                             <label class="form-label">Review</label>
-                            <textarea type="password" name="review" rows="3" required class="form-control shadow-none">
+                            <textarea type="password" name="review" rows="3" required class="form-control shadow-none"></textarea>
                         </div>
+
                         <input type="hidden" name="booking_id">
-                        <input type="hidden" name="room_id">    
+                        <input type="hidden" name="room_id">
+
                         <div class="text-end">
-                            <button type="submit" class="btn custom-bg text-white btn-sm shadow-none">Submit</button>
+                            <button type="submit" class="text-white custom-bg btn-sm shadow-none">Submit</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div> -->
+    </div>
+
 
     <?php
         if(isset($_GET['cancel_status']))
         {
             alert('success', 'Reservation Cancelled');
+        }
+        else if(isset($_GET['review_status']))
+        {
+            alert('success', 'Thank you for rating & review');
         }
 
     ?>
@@ -178,14 +186,50 @@
             }
         }
 
-        // let review_form = document.getElementById('review-form');
+        let review_form = document.getElementById('review-form');
 
-        // function review_room(bid,rid)
-        // {
-        //     review_form.elements['booking_id'].value = bid;
-        //     review_form.elements['room_id'].value = rid;
+        function review_room(bid,rid)
+        {
+            review_form.elements['booking_id'].value = bid;
+            review_form.elements['room_id'].value = rid;
 
-        // }
+        }
+
+        review_form.addEventListener('submit', function(e){
+            e.preventDefault();
+
+            let data = new FormData();
+            data.append('review_form','');
+            data.append('rating',review_form.elements['rating'].value);
+            data.append('review',review_form.elements['review'].value);
+            data.append('booking_id',review_form.elements['booking_id'].value);
+            data.append('room_id',review_form.elements['room_id'].value);
+
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/review_room.php", true);
+
+            xhr.onload = function () 
+            {
+
+
+                if(this.responseText==1)
+                {        
+                    window.location.href = 'bookings.php?review_status=true';
+                          
+                }     
+                else
+                {
+                    var myModal = document.getElementById('reviewModal');
+                    var modal = bootstrap.Modal.getInstance(myModal);
+                    modal.hide();
+
+                    alert('error', "Rating & Review Failed"); 
+                }
+            }
+
+            xhr.send(data);
+        });
     </script>
 
 </body>

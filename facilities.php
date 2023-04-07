@@ -53,6 +53,6 @@
     </div>
 
     <?php require('inc/footer.php'); ?>
-    </body>
+</body>
 </html>
             

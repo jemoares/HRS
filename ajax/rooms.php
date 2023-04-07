@@ -43,6 +43,9 @@
         // facilities data decode
         $facility_list = json_decode($_GET['facility_list'],true);
 
+        // features data decode
+        $feature_list = json_decode($_GET['feature_list'],true);
+
         // count the number of rooms and out variable to store room cards
         $count_rooms = 0;
         $output = "";
@@ -97,17 +100,28 @@
             }
 
 
-            //get features of room
+            //get features of room with filters
+            $features_count = 0;
 
-            $feature_query = mysqli_query($con, "SELECT f.name FROM `features` f 
+            $feature_query = mysqli_query($con, "SELECT f.name, f.id FROM `features` f 
                 INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
                 WHERE rfea.room_id = '$room_data[id]'");
 
             $features_data = "";
-            while ($feature_row = mysqli_fetch_assoc($feature_query)) {
+            while ($features_row = mysqli_fetch_assoc($feature_query)) {
+                
+                if(in_array($features_row['id'],$feature_list['feature'])){
+                    $features_count++;
+                }
+
                 $features_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap'>
-                    $feature_row[name]
+                    $features_row[name]
                 </span>";
+            }
+
+            if(count($feature_list['feature'])!=$features_count)
+            {
+                continue;
             }
 
             //get thumbnail of image

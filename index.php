@@ -147,21 +147,47 @@
                     ";
                 }
 
+                $rating_query = "SELECT AVG(rating) AS `avg_rating` FROM `rating_review`
+                    WHERE `room_id`='$room_data[id]' ORDER BY `sr_no` DESC LIMIT 20";
+                
+                $rating_result = mysqli_query($con, $rating_query);
+                $rating_fetch = mysqli_fetch_assoc($rating_result);
+                
+                $rating_data = "";
+
+                if($rating_fetch['avg_rating']!=NULL)
+                {
+                    $rating_data = "<div class='rating mb-4'>
+                        <h6 class='mb-1'>Rating</h6>
+                        <span class='badge rounded-pill bg-light'>
+                    ";
+
+                    for($i=0; $i<$rating_fetch['avg_rating']; $i++)
+                    {
+                        $rating_data .= "<i class='bi bi-star-fill text-warning'></i> ";
+                    }
+
+                    $rating_data .= "</span>
+                        </div>
+                    ";
+                }
+
+
                 // print room card
 
                 echo <<<data
-                        <div class="col-lg-4 col-md-6 my-3">
+                    <div class="col-lg-4 col-md-6 my-3">
                         <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
                             <img src="$room_thumb" class="card-img-top">
                             <div class="card-body">
                                 <h5>$room_data[name]</h5>
                                 <h6 class="mb-4">₱$room_data[price] per night</h6>
                                 <div class="features mb-4">
-                                    <h6 class="mb-1">Features</h6>
+                                    <h6 class="mb-1">Amenities</h6>
                                     $features_data
                                 </div>
                                 <div class="facilities mb-4">
-                                    <h6 class="mb-1">Facilities</h6>
+                                    <h6 class="mb-1">Features</h6>
                                     $facilities_data
                                 </div>
                                 <div class="guests mb-4">
@@ -170,16 +196,7 @@
                                         Maximum of $room_data[guest] Guest/s
                                     </span>
                                 </div>
-                                <div class="rating mb-4">
-                                    <h6 class="mb-1">Rating</h6>
-                                    <span class="badge rounded-pill bg-light">
-
-                                    </span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                </div>
+                                $rating_data
                                 <div class="d-flex justify-content-evenly mb-2">
                                 $book_btn
                                 <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
@@ -198,7 +215,7 @@
 
     <!-- Facilities -->
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">FACILITIES</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">FEATURES</h2>
     <div class="container">
         <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
             <?php
@@ -216,7 +233,7 @@
             ?>
 
             <div class="col-lg-12 text-center mt-5">
-                <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none"> More Facilities </a>
+                <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none"> More Features </a>
             </div>
         </div>
     </div>
@@ -225,66 +242,57 @@
 
     <!-- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">FEEDBACKS</h2>
 
-    <div class="container"> -->
+    <div class="container"> 
         <div class="swiper swiper-testimonials">
-            <div class="swiper-wrapper mb-5">
+            <div class="swiper-wrapper mb-5"> -->
+                <?php 
 
-                <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center mb-3">
-                        <img src="images/features/star.svg" width="30px">
-                        <h6 class="m-0 ms-2">Random Customer</h6>
-                    </div>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Doloremque quae quaerat aperiam fugiat cum harum numquam eius ipsa, illo exercitationem nostrum. Hic laborum aliquid similique nisi molestiae omnis, iste suscipit!
-                    </p>
-                    <div class="rating">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                    </div>
-                </div>
-                <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center mb-3">
-                        <img src="images/features/star.svg" width="30px">
-                        <h6 class="m-0 ms-2">Random Customer</h6>
-                    </div>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Doloremque quae quaerat aperiam fugiat cum harum numquam eius ipsa, illo exercitationem nostrum. Hic laborum aliquid similique nisi molestiae omnis, iste suscipit!
-                    </p>
-                    <div class="rating">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                    </div>
-                </div>
-                <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center mb-3">
-                        <img src="images/features/star.svg" width="30px">
-                        <h6 class="m-0 ms-2">Random Customer</h6>
-                    </div>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Doloremque quae quaerat aperiam fugiat cum harum numquam eius ipsa, illo exercitationem nostrum. Hic laborum aliquid similique nisi molestiae omnis, iste suscipit!
-                    </p>
-                    <div class="rating">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                    </div>
-                </div>
+                    // $review_query = "SELECT rr.*, uc.name AS uname, uc.profile, r.name AS rname FROM `rating_review` rr
+                    //     INNER JOIN `user_cred` uc ON rr.user_id = uc.id
+                    //     INNER JOIN `rooms` r ON rr.room_id = r.id
+                    //     ORDER BY `sr_no` DESC LIMIT 6";
 
-            </div>
+                    // $review_result = mysqli_query($con, $review_query);
+                    // $img_path = USERS_IMG_PATH;
+
+                    // if(mysqli_num_rows($review_result)==0)
+                    // {
+                    //     echo 'No reviews yet';
+                    // }
+                    // else
+                    // {
+                    //     while($row = mysqli_fetch_assoc($review_result))
+                    //     {
+                    //         $stars = "<i class='bi bi-star-fill text-warning'></i> ";
+                    //         for($i=1; $i<$row['rating']; $i++)
+                    //         {
+                    //             $stars .= " <i class='bi bi-star-fill text-warning'></i>";
+                    //         }
+                            
+                    //         echo<<<slides
+                    //             <div class="swiper-slide bg-white p-4">
+                    //                 <div class="profile d-flex align-items-center mb-3">
+                    //                     <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px">
+                    //                     <h6 class="m-0 ms-2">$row[uname]</h6>
+                    //                 </div>
+                    //                 <p>
+                    //                     $row[review]
+                    //                 </p>
+                    //                 <div class="rating">
+                    //                     $stars
+                    //                 </div>
+                    //             </div>
+                    //         slides;
+                    //     }
+                    // }
+                ?>
+            <!-- </div>
             <div class="swiper-pagination"></div>
         </div>
         <div class="col-lg-12 text-center mt-5">
             <a href="aboutus.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Know More</a>
         </div>
-    </div>
+    </div> -->
 
     <!-- Reach us -->
 

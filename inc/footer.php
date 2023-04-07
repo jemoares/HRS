@@ -27,11 +27,14 @@
             <a href="<?php echo $contact_r['tw'] ?>" class="d-inline-block text-dark text-decoration-none mb-2"><i class="bi bi-twitter me-1"></i>Twitter
             </a><br>
             <a href="<?php echo $contact_r['insta'] ?>" class="d-inline-block text-dark text-decoration-none mb-2"><i class="bi bi-instagram me-1"></i>Instagram
+            </a><br>
         </div>
     </div>
 </div>
 
 <h6 class="text-center bg-dark text-white p-3 m-0">Designed and Developed by Marie and Friends</h6>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

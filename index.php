@@ -179,7 +179,7 @@
                     <div class="col-lg-4 col-md-6 my-3">
                         <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
                             <img src="$room_thumb" class="card-img-top">
-                            <div class="card-body">
+                            <div class="card-body shadow">
                                 <h5>$room_data[name]</h5>
                                 <h6 class="mb-4">₱$room_data[price] per night</h6>
                                 <div class="features mb-4">
@@ -300,11 +300,11 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-                <iframe class="w-100 rounded" height="320px" src="<?php echo $contact_r['iframe'] ?>" lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded shadow">
+                <iframe class="w-100 rounded" height="320px" src="<?php echo $contact_r['iframe'] ?>" lazy referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-lg-4 col-md-4">
-                <div class="bg-white p-4 rounded mb-4">
+                <div class="bg-white p-4 rounded mb-4 shadow">
                     <h5>Call us</h5>
                     <a href="tel: +<?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark">
                         <i class="bi bi-telephone-fill"></i>+<?php echo $contact_r['pn1'] ?>
@@ -320,7 +320,7 @@
                     }
                     ?>
                 </div>
-                <div class="bg-white p-4 rounded mb-4">
+                <div class="bg-white p-4 rounded mb-4 shadow">
                     <h5>Follow us</h5>
                     <?php
                     if ($contact_r['fb'] != '') {
@@ -353,7 +353,7 @@
 
     
     <!-- Password reset modal and code-->
-    <div class="modal fade" id="recoveryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="recoveryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="recovery-form">
@@ -381,7 +381,9 @@
         </div>
     </div>
 </div>
-    
+
+
+
     <?php require('inc/footer.php'); ?>
 
     <?php 
@@ -499,6 +501,7 @@
         });
 
     </script>
+    
 </body>
 
 </html>

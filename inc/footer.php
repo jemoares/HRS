@@ -31,12 +31,59 @@
         </div>
     </div>
 </div>
+<!-- Messenger Chat plugin Code -->
+<!-- <div id="fb-root">
+</div> -->
+
+<!-- Your Chat plugin code -->
+<!-- <div id="fb-customer-chat" class="fb-customerchat">
+</div>  -->
 
 <h6 class="text-center bg-dark text-white p-3 m-0">Designed and Developed by Marie and Friends</h6>
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6433975431ebfa0fe7f76543/1gtkoe91h';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})(); 
+</script>
+<!--End of Tawk.to Script-->
+
+
+
+<script>
+//   var chatbox = document.getElementById('fb-customer-chat');
+//   chatbox.setAttribute("page_id", "113096715084208");
+//   chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+//   window.fbAsyncInit = function() {
+//     FB.init({
+//       xfbml            : true,
+//       version          : 'v16.0'
+//     });
+//   };
+
+//   (function(d, s, id) {
+//     var js, fjs = d.getElementsByTagName(s)[0];
+//     if (d.getElementById(id)) return;
+//     js = d.createElement(s); js.id = id;
+//     js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+//     fjs.parentNode.insertBefore(js, fjs);
+//   }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <script>
     
@@ -105,21 +152,30 @@
         xhr.open("POST", "ajax/login_register.php", true);
 
         xhr.onload = function() {
-            if (this.responseText == 'pass_mismatch') {
-                alert('error', "Password mismatch");
-            } else if (this.responseText == 'email_already') {
+            if (this.responseText == 'pass_mismatch') 
+            {
+                alert('error',"Password do not match");
+            } 
+            else if (this.responseText == 'email_already') 
+            {
                 alert('error', "Email is already registered");
-            } else if (this.responseText == 'phone_already') {
+            } else if (this.responseText == 'phone_already') 
+            {
                 alert('error', "Phone number is already registered");
-            } else if (this.responseText == 'inv_img') {
+            } else if (this.responseText == 'inv_img') 
+            {
                 alert('error', "Only JPG, WEBP, and PNG images are allowed");
-            } else if (this.responseText == 'upd_failed') {
+            } else if (this.responseText == 'upd_failed') 
+            {
                 alert('error', "Image upload failed");
-            } else if (this.responseText == 'mail_failed') {
+            } else if (this.responseText == 'mail_failed') 
+            {
                 alert('error', "Cannot send confirmation email, Server down");
-            } else if (this.responseText == 'ins_failed') {
+            } else if (this.responseText == 'ins_failed') 
+            {
                 alert('error', "Registration failed, Server Down");
-            } else {
+            } else 
+            {
                 alert('success', "Registration successful. Confirmation link sent to email");
                 register_form.reset();
             }
@@ -148,7 +204,7 @@
 
         xhr.onload = function() {
             if (this.responseText == 'inv_email_mob') {
-                alert('error', "Invalid Email or Mobile number");
+                alert('error',"Invalid Email or Mobile number");
             } else if (this.responseText == 'not_verified') {
                 alert('error', "Email is not verified");
             } else if (this.responseText == 'inactive') {

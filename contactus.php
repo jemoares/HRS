@@ -15,9 +15,7 @@
         <h2 class="fw-bold h-font text-center">CONTACT US</h2>
         <div class="h-line bg-dark"></div>
         <p class="text-center mt-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Atque saepe sed cum sapiente natus sunt voluptas.
-            Quibusdam iste at ut!
+            If there is anything that you like or dislike about our accomodation or service, please leave us a message.
         </p>  
     </div>
 

@@ -59,7 +59,7 @@ adminLogin();
                                     </div>
                                     <!-- <div class="mb-3">
                                         <label class="form-label fw-bold">Password</label>
-                                        <input type="password" id="password_inp" name="password" class="form-control shadow-none" required>
+                                        <input type="password" id="confirm_password_inp" name="confirm_password" class="form-control shadow-none" required>
                                     </div> -->
                                 </div>
                                 <div class="modal-footer">

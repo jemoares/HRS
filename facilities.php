@@ -22,9 +22,8 @@
         <h2 class="fw-bold h-font text-center">FEATURES</h2>
         <div class="h-line bg-dark"></div>
         <p class="text-center mt-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Atque saepe sed cum sapiente natus sunt voluptas.
-            Quibusdam iste at ut!
+        Each room at Hotel Mokko is equipped with unique features that vary depending on the type of room chosen by the customer.<br> 
+        These features are carefully designed to provide a comfortable and memorable stay for guests.
         </p>  
     </div>
 

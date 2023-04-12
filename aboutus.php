@@ -20,24 +20,26 @@
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">ABOUT US</h2>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">
+        <!-- <p class="text-center mt-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Atque saepe sed cum sapiente natus sunt voluptas.
             Quibusdam iste at ut!
-        </p>  
+        </p>   -->
     </div>
 
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6 col-md-5 mb-4 order-lg-1 order-md-1 order-2">
                 <h3 class="mb-3">
-                    Lorem ipsum dolor sit.
+                    What is Hotel Mokko?<hr>
                 </h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Distinctio odit quisquam aliquam deserunt et eos unde?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Distinctio odit quisquam aliquam deserunt et eos unde?
+                    Hotel Mokko is a small boutique hotel located in a serene countryside setting.
+                    With rustic yet elegant décor, personalized service, and a focus on locally-sourced cuisine, 
+                    Hotel Mokko offers a cozy and intimate retreat for travelers seeking a peaceful and authentic experience. 
+                    The hotel's warm and welcoming ambiance, beautiful gardens, and rejuvenating spa provide a tranquil oasis for relaxation and rejuvenation. 
+                    Whether you're looking for a romantic getaway, a solo escape, or a family vacation, 
+                    Hotel Mokko promises a unique and memorable stay in a small hotel that embodies the essence of hospitality and tranquility.
                 </p>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
@@ -45,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="container mt-5">
+    <!-- <div class="container mt-5">
         <div class="row">
             <div class="col-lg-3 col-md-6 mb-4 px-4">
                 <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
@@ -72,7 +74,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
 

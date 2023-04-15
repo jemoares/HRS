@@ -92,7 +92,7 @@ if (isset($_POST['cancel_reservation']))
     $frm_data = filteration($_POST);
 
     $query = "UPDATE `booking_order` SET `booking_status`=?, `cancel`=? WHERE `booking_id`=?";
-    $values = ['cancelling',0, $frm_data['booking_id']];
+    $values = ['cancelled',1, $frm_data['booking_id']];
     $res = update($query, $values, 'sii');
 
     echo $res;

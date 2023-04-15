@@ -11,9 +11,19 @@
 
 <body class="bg-light">
 
-    <?php require('inc/header.php'); ?>
+    <?php require('inc/header.php');
+    
+    // $checkin_default="";
+    // $checkout_default="";
 
-    <?php
+    // if(isset($_GET['check_availability']))
+    // {
+    //     $frm_data = filteration($_GET);
+
+    //     $checkin_default=$frm_data['checkin'];
+    //     $checkout_default=$frm_data['checkout'];
+    // }
+    
 
     /*
         CHECK ROOM SA URL KUNG ACTIVE BA OR HINDI
@@ -108,11 +118,11 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Check-in</label>
-                                    <input name="checkin" onchange="check_availability()" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
+                                    <input name="checkin" onchange="check_availability()" value="<?php echo $checkin_default ?>" id="checkin" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label">Check-out</label>
-                                    <input name="checkout" onchange="check_availability()" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
+                                    <input name="checkout" onchange="check_availability()" value="<?php echo $checkout_default ?>" id="checkout" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-12">
                                     <div class="spinner-border text-info mb-3 d-none" id="info_loader" role="status">

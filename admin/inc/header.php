@@ -25,9 +25,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="new_reservations.php">New Reservations</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link text-white" href="cancelled_reservations.php">Cancel Reservations</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="reservation_records.php">Reservation Records</a>
                                 </li>

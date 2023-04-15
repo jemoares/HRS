@@ -67,7 +67,7 @@ function cancel_reservation(id)
         xhr.onload = function() {             
 
             if (this.responseText == 1) {
-                alert('success', 'Cancelling reservation in process');
+                alert('success', 'Reservation Cancelled');
                 get_reservations();
             }  
             else {

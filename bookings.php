@@ -36,8 +36,8 @@
                 $query = "SELECT bo.*, bd.* FROM `booking_order` bo
                     INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id
                     WHERE ((bo.booking_status='reserved') 
-                    OR (bo.booking_status='cancelled')
-                    OR (bo.booking_status='cancelling'))
+                    OR (bo.booking_status='cancelled'))
+                    -- OR (bo.booking_status='cancelling'))
                     AND (bo.user_id=?)
                     ORDER BY bo.booking_id DESC";
 
@@ -70,11 +70,13 @@
                             $btn="<button onclick='cancel_reservation($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'>Cancel</button>";
                         }
                     }
-                    else if($data['booking_status']=='cancelling')
-                    {
-                        $status_bg = "bg-secondary";
-                        $btn="<span class='badge bg-primary'>Cancellation in process</span>";   
-                    }
+                    // else if($data['booking_status']=='cancelled')
+                    // {
+                    //     $status_bg = "bg-danger";
+                    //     $btn="<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
+
+                    //     // $btn="<span class='badge bg-primary'>Cancellation in process</span>";   
+                    // }
                     else
                     {
                         $status_bg = "bg-danger";

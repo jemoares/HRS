@@ -5,6 +5,17 @@
     date_default_timezone_set("Asia/Manila");
 
     session_start();
+    
+    $checkin_default="";
+    $checkout_default="";
+
+    if(isset($_GET['check_availability']))
+    {
+        $frm_data = filteration($_GET);
+
+        $checkin_default=$frm_data['checkin'];
+        $checkout_default=$frm_data['checkout'];
+    }
 
     if (isset($_GET['fetch_rooms']))
     {
@@ -137,6 +148,8 @@
             }
 
             $book_btn = "";
+            // $input = "";
+
 
             if(!$settings_r['shutdown'])
             {
@@ -144,8 +157,10 @@
                 if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
                     $login = 1;
                 }
+                // $input = "<input type='hidden' name='check_availability'>";
                 $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Book Now</button>";               
             }
+            
             // print room card
 
             $output.="

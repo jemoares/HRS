@@ -13,7 +13,7 @@
         //CHECK IN TSAKA OUT VALIDATIONS
 
         
-        $today_date = new DateTime(date("Y-m-d"));
+        $today_date = new DateTime(date("Y-m-d h:ia"));
         $checkin_date = new DateTime($frm_data['check_in']); 
         $checkout_date = new DateTime($frm_data['check_out']); 
         
@@ -63,9 +63,11 @@
                 echo $result;
                 exit;
             }
-
+            
             $count_days = date_diff($checkin_date,$checkout_date)->days;
-            $payment = $_SESSION['room']['price'] * $count_days;
+            $interval = $checkin_date->diff($checkout_date);
+            $hours = $interval->h + ($interval->days * 24);
+            $payment = $_SESSION['room']['price'] * $hours;
 
             $_SESSION['room']['payment'] = $payment;
             $_SESSION['room']['available'] = true;

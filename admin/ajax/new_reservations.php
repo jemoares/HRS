@@ -26,9 +26,9 @@ if (isset($_POST['get_reservations'])) {
 
     while($data = mysqli_fetch_assoc($res)) 
     {
-        $date = date("d-m-Y", strtotime($data['datentime']));
-        $checkin = date("d-m-Y", strtotime($data['check_in']));
-        $checkout = date("d-m-Y", strtotime($data['check_out']));
+        $date = date("d-m-Y h:ia", strtotime($data['datentime']));
+        $checkin = date("d-m-Y h:ia", strtotime($data['check_in']));
+        $checkout = date("d-m-Y h:ia", strtotime($data['check_out']));
 
         $table_data .="
             <tr>

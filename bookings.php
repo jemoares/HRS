@@ -44,9 +44,9 @@
                 $result = select($query,[$_SESSION['uId']],'i');
                 while($data = mysqli_fetch_assoc($result))
                 {
-                    $date = date("m-d-Y", strtotime($data['datentime']));
-                    $checkin = date("m-d-Y", strtotime($data['check_in']));
-                    $checkout = date("m-d-Y", strtotime($data['check_out']));
+                    $date = date("m-d-Y h:ia", strtotime($data['datentime']));
+                    $checkin = date("m-d-Y h:ia", strtotime($data['check_in']));
+                    $checkout = date("m-d-Y h:ia", strtotime($data['check_out']));
 
                     $status_bg = "";
                     $btn="";

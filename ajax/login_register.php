@@ -16,6 +16,7 @@
         require("../PHPMailer/PHPMailer.php");
         require("../PHPMailer/SMTP.php");
         require("../PHPMailer/Exception.php");
+        
 
         $mail = new PHPMailer(true);
 
@@ -36,7 +37,7 @@
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             // $mail->Username   = 'hotelmokko32@gmail.com';                     //SMTP username
-            // $mail->Password   = 'wxisjzsgemggbtgm';                               //SMTP password
+            // $mail->Password   = 'wnpbjlvgavfalnqk';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
@@ -133,13 +134,13 @@
 
         $enc_pass = password_hash($data['pass'],PASSWORD_BCRYPT);
 
-        $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `pincode`, `dob`, 
-        `profile`, `password`, `token`) VALUES (?,?,?,?,?,?,?,?,?)";
+        $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `valid_id`, 
+        `profile`, `password`, `token`) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         $values = [$data['name'],$data['email'],$data['address'],$data['phonenum'],$data['pincode'],$data['dob'],
-        $img,$enc_pass,$token];
+        $img, $img, $enc_pass,$token];
 
-        if(insert($query,$values,'sssssssss')){
+        if(insert($query,$values,'ssssssssss')){
             echo 1; 
         }else{
             echo 'ins_failed';
@@ -181,6 +182,7 @@
                     $_SESSION['uName'] = $u_fetch['name'];
                     $_SESSION['uPic'] = $u_fetch['profile'];
                     $_SESSION['uPhone'] = $u_fetch['phonenum'];
+                    $_SESSION['uEmail'] = $u_fetch['email'];
                     echo 1;
                 }
             }

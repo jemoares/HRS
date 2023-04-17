@@ -125,6 +125,10 @@
                                 <input name="profile" type="file" accept=".jpg, .jpeg, .png, .webp" class="form-control shadow-none" required>
                             </div>
                             <div class="col-md-12 p-0 mb-3">
+                                <label class="form-label">Valid ID</label>
+                                <input name="validid" type="file" accept=".jpg, .jpeg, .png, .webp" class="form-control shadow-none" required>
+                            </div>  
+                            <div class="col-md-12 p-0 mb-3">
                                 <label class="form-label">Address</label>
                                 <textarea name="address" class="form-control shadow-none" rows="1" required></textarea>
                             </div>

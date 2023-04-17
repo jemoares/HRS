@@ -57,11 +57,11 @@
                     <div class="row align-items-end">
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;" type="date" >Check-in</label>
-                            <input type="date" class="form-control shadow-none" name="checkin" min="<?php echo date("Y-m-d"); ?>" required>
+                            <input type="datetime-local" class="form-control shadow-none" name="checkin" min="<?php echo date("Y-m-d"); ?>" required>
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;" type="date" >Check-out</label>
-                            <input type="date" class="form-control shadow-none" name="checkout" min="<?php echo date("Y-m-d"); ?>" required>
+                            <input type="datetime-local" class="form-control shadow-none" name="checkout" min="<?php echo date("Y-m-d"); ?>" required>
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;">Number of Person</label>

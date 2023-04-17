@@ -93,7 +93,7 @@
                     <div class="card p-3 shadow-sm rounded">
                         <img src="$room_thumb" class="img-fluid rounded mb-3">
                         <h5>$room_data[name]</h5>
-                        <h6>₱$room_data[price] Per night</h6>
+                        <h6>₱$room_data[price] Per hour</h6>
                     </div>
                  data;
                 ?>
@@ -105,25 +105,42 @@
                             <h6 class=mb-3>BOOKING DETAILS</h6>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Name</label>
+                                    <label class="form-label">Name:</label>
                                     <input name="name" type="text" value="<?php echo $user_data['name'] ?>" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Phone Number</label>
+                                    <label class="form-label">Phone Number:</label>
                                     <input name="phonenum" type="number" value="<?php echo $user_data['phonenum'] ?>" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label class="form-label">Address</label>
+                                    <label class="form-label">Address:</label>
                                     <textarea name="address" class="form-control shadow-none" rows="1" required><?php echo $user_data['address'] ?></textarea>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Email:</label>
+                                    <input name="email" type="text" value="<?php echo $user_data['email'] ?>" class="form-control shadow-none" required> 
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- <label class="form-label">Time of arrival:</label> -->
+                                    <label class="form-label text-danger" style="font-size: 13px;">(Note: Your reservation will be cancelled if you don't appear on the day you reserve)</label>
+                                    <!-- <input name="arrival"  type="time" class="form-control shadow-none" style="width: 223px;"> -->
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Check-in</label>
-                                    <input name="checkin" onchange="check_availability()" value="<?php echo $checkin_default ?>" id="checkin" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
+                                    <!-- <input name="checkin" onchange="check_availability()" id="checkin" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required> -->
+                                    <input name="checkin" onchange="check_availability()"  id="checkin" type="datetime-local" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label">Check-out</label>
-                                    <input name="checkout" onchange="check_availability()" value="<?php echo $checkout_default ?>" id="checkout" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
+                                    <!-- <input name="checkout" onchange="check_availability()" id="checkout" type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required> -->
+                                    <input name="checkout" onchange="check_availability()" value="<?php echo $checkout_default ?>" id="checkout" type="datetime-local" min="<?php echo date("Y-m-d"); ?>" class="form-control shadow-none" required>
                                 </div>
+                                <!-- <div class="col-md-7 mb-3">
+                                <form action="send_email.php" method="post">
+                                    <input type="checkbox" id="emailCheckbox" name="emailCheckbox" required>
+                                    <label for="emailCheckbox">Send receipt to your email</label>
+                                </form>
+                                </div> -->
                                 <div class="col-12">
                                     <div class="spinner-border text-info mb-3 d-none" id="info_loader" role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -134,6 +151,7 @@
                                     <button name="reserve_now" class="btn w-100 text-white custom-bg shadow-none mb-1" disabled>
                                         Reserve Now
                                     </button>
+                                    <!-- <div id="paypal-button-container"></div> -->
                                 </div>
                             </div>
                         </form>
@@ -144,6 +162,33 @@
     </div>
 
     <?php require('inc/footer.php'); ?>
+
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AcWN7JgN-pLzDbmfeuYwjiFD72twVN2CrHEyzb0_h3CtNdU355LrgwJnd3TA0z1TCGpMFHVLpnaWawF1&currency=USD"></script>
+    <script>
+       paypal.Buttons({
+        // Sets up the transaction when a payment button is clicked
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: data.payment // Can also reference a variable or function
+                    }
+                }]
+            });
+
+        },
+        // Finalize the transaction after payer approval
+        onApprove: (data, actions) => {
+            return actions.order.capture().then(function(orderData) {
+                //Successful capture for dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                const transaction = orderData.purchase_units[0].payments.captures[0];
+                alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available detail`);
+            });
+        }
+       }).render('#paypal-button-container');
+    </script> -->
+
     <script>
         let booking_form = document.getElementById('booking_form');
         let info_loader = document.getElementById('info_loader');
@@ -192,7 +237,8 @@
                     }
                     else
                     {
-                        pay_info.innerHTML = "Number of Days: "+data.days+"<br>Total Amount to Pay: ₱"+data.payment;
+                        pay_info.innerHTML = "Total Amount to Pay: ₱"+data.payment;
+                        // pay_info.innerHTML = "Number of Days: "+data.days+"<br>Total Amount to Pay: ₱"+data.payment;
                         pay_info.classList.replace('text-danger','text-dark');
                         booking_form.elements['reserve_now'].removeAttribute('disabled');
                     }
@@ -204,6 +250,13 @@
                 xhr.send(data);
             }
         }
+
+        // document.getElementById('emailCheckbox').addEventListener('change', function() {
+        //     if (this.checked) {
+        //         // Submit the form when checkbox is checked
+        //         this.closest('form').submit();
+        //     }
+        // });
     </script>
 </body>
 

@@ -41,6 +41,32 @@ function cancel_reservation(id)
     }
 }
 
+function paid_reservation(id)
+{
+    
+    if(confirm("Are you sure this reservation has been paid?"))
+    {
+        let data = new FormData();
+        data.append('booking_id', id);
+        data.append('paid_reservation', '');
+    
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/cancelled_reservations.php", true);
+
+        xhr.onload = function() {             
+
+            if (this.responseText == 1) {
+                alert('success', 'Reservation Confirmed');
+                get_reservations();
+            }  
+            else {
+                alert('error', 'Server Down' );
+            }
+        }
+        xhr.send(data);
+    }
+}
+
 
     
 window.onload = function() {

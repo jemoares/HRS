@@ -11,9 +11,9 @@ if (isset($_POST['get_reservations'])) {
     $query = "SELECT bo.*, bd.* FROM `booking_order` bo
     INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id
     WHERE (bo.order_id LIKE ? OR bd.phonenum LIKE ? OR bd.user_name LIKE ?)
-    AND (bo.booking_status=? AND bo.cancel=?) ORDER BY bo.booking_id ASC";
+    AND (bo.booking_status=?) ORDER BY bo.booking_id ASC";
 
-    $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","cancelled",0],'sssss');
+    $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","pending"],'ssss');
     
     $i=1;
     $table_data = "";
@@ -26,9 +26,9 @@ if (isset($_POST['get_reservations'])) {
 
     while($data = mysqli_fetch_assoc($res)) 
     {
-        $date = date("d-m-Y", strtotime($data['datentime']));
-        $checkin = date("d-m-Y", strtotime($data['check_in']));
-        $checkout = date("d-m-Y", strtotime($data['check_out']));
+        $date = date("d-m-Y h:ia", strtotime($data['datentime']));
+        $checkin = date("d-m-Y h:ia", strtotime($data['check_in']));
+        $checkout = date("d-m-Y h:ia", strtotime($data['check_out']));
 
         $table_data .="
             <tr>
@@ -54,7 +54,10 @@ if (isset($_POST['get_reservations'])) {
                     <b>Date:</b> $date
                 </td>
                 <td>
-                    <button type='button' onclick='cancel_reservation($data[booking_id])'class='btn btn-success btn-sm fw-bold shadow-none'>
+                    <button type='button' onclick='paid_reservation($data[booking_id])'class='btn btn-success btn-sm fw-bold mb-2 shadow-none'>
+                        <i class='bi bi-cash-stack'></i> Paid
+                    </button><br>
+                    <button type='button' onclick='cancel_reservation($data[booking_id])'class='btn btn-danger btn-sm fw-bold shadow-none'>
                         <i class='bi bi-cash-stack'></i> Cancel
                     </button>
                 </td>
@@ -77,5 +80,17 @@ if (isset($_POST['cancel_reservation']))
     echo $res;
 }
 
+if (isset($_POST['paid_reservation'])) 
+{
+    $frm_data = filteration($_POST);
+
+    $query = "UPDATE `booking_order` 
+    SET `booking_status`=?
+    WHERE `booking_id`=?";
+    $values = ['reserved', $frm_data['booking_id']];
+    $res = update($query, $values, 'si');
+
+    echo $res;
+}
 
 ?>

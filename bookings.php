@@ -36,8 +36,8 @@
                 $query = "SELECT bo.*, bd.* FROM `booking_order` bo
                     INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id
                     WHERE ((bo.booking_status='reserved') 
-                    OR (bo.booking_status='cancelled'))
-                    -- OR (bo.booking_status='cancelling'))
+                    OR (bo.booking_status='cancelled')
+                    OR (bo.booking_status='pending'))
                     AND (bo.user_id=?)
                     ORDER BY bo.booking_id DESC";
 
@@ -51,9 +51,18 @@
                     $status_bg = "";
                     $btn="";
 
-                    if($data['booking_status']=='reserved')
+                    if($data['booking_status']=='pending')
+                    {
+                        // $btn="<span class='badge bg-primary'>Send your initial payment</span>";   
+                        $status_bg = "bg-secondary";
+                        $btn="<button onclick='cancel_reservation($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'>Cancel</button>";
+                        
+                    
+                    }
+                    else if($data['booking_status']=='reserved')
                     {
                         $status_bg = "bg-success";
+                        $btn="<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
                         
                         if($data['arrival']==1)
                         {
@@ -65,18 +74,12 @@
                                 $btn.="<button type='button' onclick='review_room($data[booking_id],$data[room_id])' data-bs-toggle='modal' data-bs-target='#reviewModal' class='btn btn-dark btn-sm shadow-none ms-2'>Rate & Review</button>";
                             }
                         }
-                        else
-                        {
-                            $btn="<button onclick='cancel_reservation($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'>Cancel</button>";
-                        }
+                        // else
+                        // {
+                             
+                        //     $btn="<button onclick='cancel_reservation($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'>Cancel</button>";
+                        // }
                     }
-                    // else if($data['booking_status']=='cancelled')
-                    // {
-                    //     $status_bg = "bg-danger";
-                    //     $btn="<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>";
-
-                    //     // $btn="<span class='badge bg-primary'>Cancellation in process</span>";   
-                    // }
                     else
                     {
                         $status_bg = "bg-danger";

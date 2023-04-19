@@ -181,7 +181,7 @@
                             <img src="$room_thumb" class="card-img-top">
                             <div class="card-body shadow">
                                 <h5>$room_data[name]</h5>
-                                <h6 class="mb-4">₱$room_data[price] per night</h6>
+                                <h6 class="mb-4">₱$room_data[price] per hour</h6>
                                 <div class="features mb-4">
                                     <h6 class="mb-1">Amenities</h6>
                                     $features_data

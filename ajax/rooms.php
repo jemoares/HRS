@@ -26,7 +26,7 @@
         // check in and check out validation 
         if($chk_avail['checkin']!='' && $chk_avail['checkout']!='')
         {
-            $today_date = new DateTime(date("Y-m-d"));
+            $today_date = new DateTime(date("Y-m-d h:ia"));
             $checkin_date = new DateTime($chk_avail['checkin']); 
             $checkout_date = new DateTime($chk_avail['checkout']); 
             

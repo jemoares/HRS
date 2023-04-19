@@ -55,8 +55,8 @@
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com'; // SMTP host of your email provider
                 $mail->SMTPAuth = true;
-                // $mail->Username = 'hotelmokko32@gmail.com'; // Your email address
-                // $mail->Password = 'wnpbjlvgavfalnqk'; // Your email password
+                $mail->Username = 'hotelmokko32@gmail.com'; // Your email address
+                $mail->Password = 'wnpbjlvgavfalnqk'; // Your email password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587; // Port number for SMTP
     
@@ -91,7 +91,7 @@
     
                 // Send the email
                 $mail->send();
-                echo "<script>alert('Reservation Successfully, Receipt is sent to your email');
+                echo "<script>alert('Reservation Successfully, Receipt is sent to your email. Please send the initial payment until 2pm tomorrow to confirm your reservation');
                         window.location.href='bookings.php';
                     </script>
                 ";

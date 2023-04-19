@@ -23,11 +23,11 @@
                         <div class="collapse show px-3 small mb-1" id="bookingLinks">
                             <ul class="nav nav-pills flex-column rounded border border-secondary">
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="new_reservations.php">New Reservations</a>
+                                    <a class="nav-link text-white" href="cancelled_reservations.php">Pending Reservations</a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link text-white" href="cancelled_reservations.php">Cancel Reservations</a>
-                                </li> -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="new_reservations.php">Paid Reservations</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="reservation_records.php">Reservation Records</a>
                                 </li>

@@ -2,7 +2,7 @@
     $hname = 'localhost';
     $uname = 'root';
     $pass = '';
-    $db = 'hotel_supersystem';
+    $db = 'hotelweb';
 
     $con = mysqli_connect($hname,$uname,$pass,$db);
 

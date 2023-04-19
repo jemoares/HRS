@@ -40,9 +40,9 @@ adminLogin();
                                     <tr class="bg-dark text-light">
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Area</th>
+                                        <!-- <th scope="col">Area</th> -->
                                         <th scope="col">Guests</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="col">Price per hr</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
@@ -75,12 +75,12 @@ adminLogin();
                                 <label class="form-label fw-bold">Name</label>
                                 <input type="text" name="name" class="form-control shadow-none" required>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <!-- <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Area(sq.ft.)</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none" required>
-                            </div>
+                            </div> -->
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Price</label>
+                                <label class="form-label fw-bold">Price per hr</label>
                                 <input type="number" min="1" name="price" class="form-control shadow-none" required>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -159,12 +159,12 @@ adminLogin();
                                 <label class="form-label fw-bold">Name</label>
                                 <input type="text" name="name" class="form-control shadow-none" required>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <!-- <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Area</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none" required>
-                            </div>
+                            </div> -->
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Price</label>
+                                <label class="form-label fw-bold">Price per hr</label>
                                 <input type="number" min="1" name="price" class="form-control shadow-none" required>
                             </div>
                             <div class="col-md-6 mb-3">

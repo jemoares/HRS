@@ -70,8 +70,7 @@
                 $mail->Body    = "
                     Dear Valued Guest, <br><br> 
 
-                    We are glad to inform you that your room reservation is now confirmed, You may present this message or the PDF Receipt that can be seen and download in your profile<br>
-                    to the Front Office personnel upon your arrival at the Hotel Mokko.<br><br>
+                    We are glad to inform you that your room reservation is now reserved. Please send your proof of payment in this email to verify your reservation.<br><br>
 
                     Reservation Details: <br>
                     Reservation ID: $ORDER_ID<br>
@@ -83,9 +82,9 @@
                     Phone Number: $frm_data[phonenum]<br>
                     Amount to pay: ₱$TXN_AMOUNT<br><br>
                     
-                    Note: Please be reminded that your reservation may not be honored if you do not show up 30 minutes after your given time of arrival.
+                    Note: Please be reminded that your reservation may not be honored if you do not show up after 3 hours of your check in date and time.
                     You may also check out earlier than the scheduled check-out time, <br>
-                    but kindly note that the whole rate of 24 hours should still be paid. Thank you and we look forward to your arrival at Hotel Mokko. <br>
+                    but kindly note that the whole rate of 24 hours should still be paid.
    
                 ";
     

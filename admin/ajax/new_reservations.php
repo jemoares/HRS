@@ -88,7 +88,7 @@ if (isset($_POST['assign_room'])) {
         $query1 = "UPDATE `user_info` ui
         SET user_id = ?";
     
-        $values1 = [$frm_data['booking_id']];
+        $values1 = [$frm_data['user_id']];
         $res1 = update($query1, $values1, 'i');    
     }
 

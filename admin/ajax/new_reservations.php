@@ -84,6 +84,14 @@ if (isset($_POST['assign_room'])) {
     $values = [1,0, $frm_data['room_no'],$frm_data['booking_id']];
     $res = update($query, $values,'iisi');
 
+    if($res){
+        $query1 = "UPDATE `user_info` ui
+        SET user_id = ?";
+    
+        $values1 = [$frm_data['booking_id']];
+        $res1 = update($query1, $values1, 'i');    
+    }
+
     echo($res==2) ? 1 : 0;
 }
 
